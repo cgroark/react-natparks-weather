@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import Results from './Results';
 let api = 'TpUEGQRVegmV8RRSxrepQC1vjb9NjINuVHNsAvhq';
 
 class Parks extends Component {
@@ -6,19 +7,16 @@ class Parks extends Component {
 		super(props)
 		this.state = {
 			park: '',
-			parkData: ''
+			parkData: []
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
 	handleChange(e) {
-		console.log(this.state.park)
 		this.setState({
 			park: e.target.value
 		})
 	}
-
-	
 
 	handleSubmit(e) {
 		e.preventDefault()
@@ -28,8 +26,7 @@ class Parks extends Component {
 				return response.json()
 			})
 			.then((json) => {
-				console.log(json.data)
-				let national = json.data.filter((park) =>{
+				let national = json.data.filter(park =>{
 					return park.designation === 'National Park'
 				})
 				this.setState({
@@ -41,11 +38,14 @@ class Parks extends Component {
 
 	render() {
 		return (
-			<form className='search-bar' onSubmit={this.handleSubmit}>
-				<label className='search-label'>Search</label>
-				<input placeholder='search here' type='text' value={this.state.park} onChange={this.handleChange} />
-				<button className='button' type='submit'>Submit</button>
-			</form>
+			<div>
+				<form className='search-bar' onSubmit={this.handleSubmit}>
+					<label className='search-label'>Search</label>
+					<input placeholder='search here' type='text' value={this.state.park} onChange={this.handleChange} />
+					<button className='button' type='submit'>Submit</button>
+				</form>
+				<Results results={this.state.parkData} />
+			</div>
 		)
 	}
 }
