@@ -9,16 +9,14 @@ class Parks extends Component {
 			park: '',
 			parkData: []
 		}
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 	}
-	handleChange(e) {
+	handleChange = (e) => {
 		this.setState({
 			park: e.target.value
 		})
 	}
 
-	handleSubmit(e) {
+	handleSubmit = (e) => {
 		e.preventDefault()
 		let parksApi = "https://developer.nps.gov/api/v1/parks?stateCode=" + this.state.park + "&api_key=" + api
 		fetch(parksApi)
