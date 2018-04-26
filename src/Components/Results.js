@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Weather from './Weather';
+let weatherApi = '4777b8d76e2b5feb';
+let weatherData
 
 class ListItem extends Component {
 	constructor(props){
@@ -7,17 +9,32 @@ class ListItem extends Component {
 		this.state = {
 			location: '',
 			url: '',
-			name: ''
+			name: '',
+			weather:''
 		}
 	}
 
+
+
 	infoHandler = () => {
-		this.setState({
-			name: this.props.name,
-			location: this.props.location,
-			url: this.props.url
-		})
-		console.log(this.props.name)
+		let latlong = this.props.location;
+		let split = latlong.split(':').slice(1,3).join().split(',');
+  		let gone = split.splice(1,1);
+  		let locationData = split.join()
+  		let weatherUrl = 'http://api.wunderground.com/api/' + weatherApi + '/forecast10day/q/' +  locationData + '.json';
+  		console.log(weatherUrl)
+  		fetch(weatherUrl)
+  			.then(response => {
+  				return response.json()
+  			}).then(json => {
+  				this.setState({
+  					name: this.props.name,
+					location: this.props.location,
+					url: this.props.url,
+  					weather: json.forecast.txt_forecast.forecastday
+  				}) 
+
+  			})
 	}
 	render() {
 		let location = this.state.location
@@ -25,7 +42,7 @@ class ListItem extends Component {
 			<div>
 				{!location &&
 					<div className='park-list'>
-						<li>
+						<li className='park-detail' key={this.props.name}>
 							{this.props.name}
 							<button className='button' onClick={this.infoHandler}>More Info</button>
 						</li>
@@ -36,7 +53,9 @@ class ListItem extends Component {
 					<div className='info-div'>
 						<h1>{this.state.name}</h1>
 						<h3>{this.state.url}</h3>
-						<Weather latLong={this.state.location}/>
+						<h1>{this.state.weather[0].title}</h1>
+						<img src={this.state.weather[0].icon_url} />
+						<h4>{this.state.weather[0].fcttext}</h4>
 					</div>
 				}	
 			</div>
@@ -51,8 +70,7 @@ class Results extends Component {
 		if(this.props.results.length > 0){
 			parkList = this.props.results.map(park => {
 				return <ListItem name={park.fullName} location={park.latLong} url={park.url} />
-			})	
-			console.log('liiiist', parkList)
+			})
 		}
 		return (
 			<div >
