@@ -40,7 +40,7 @@ class Parks extends Component {
 				<form className='search-bar' onSubmit={this.handleSubmit}>
 					<label className='search-label'>Search</label>
 					<input placeholder='search here' type='text' value={this.state.park} onChange={this.handleChange} />
-					<button className='button' type='submit'>Submit</button>
+					<button className='search-button' type='submit'>Submit</button>
 				</form>
 				<Results results={this.state.parkData} />
 			</div>
