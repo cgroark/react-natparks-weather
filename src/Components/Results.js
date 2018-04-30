@@ -39,10 +39,10 @@ class ListItem extends Component {
 	render() {
 		let location = this.state.location
 		return(
-			<div>
+			<div className='park-list'>
 				{!location &&
-					<div className='park-list'>
-						<li className='park-detail' key={this.props.name}>
+					<div>
+						<li key={this.props.name}>
 							{this.props.name}
 							<button className='button' onClick={this.infoHandler}>More Info</button>
 						</li>
@@ -51,11 +51,13 @@ class ListItem extends Component {
 
 				{location &&
 					<div className='info-div'>
-						<h1>{this.state.name}</h1>
-						<h3>{this.state.url}</h3>
-						<h1>{this.state.weather[0].title}</h1>
+						<p className='park-name'>{this.state.name}</p>
+						<a href={this.state.url}>visit website</a>
+						<p>Weather forecast for {this.state.weather[0].title}</p>
+						<p className='weather'>{this.state.weather[0].fcttext}</p>
 						<img src={this.state.weather[0].icon_url} />
-						<h4>{this.state.weather[0].fcttext}</h4>
+						
+						
 					</div>
 				}	
 			</div>

@@ -12,13 +12,13 @@ li{
 }
 
 .App-title{
-  font-size: 32;
+  font-size: 44px;
   text-align: center;
 }
 
 .App-header{
-  background-color: teal;
-
+  background-image: url('./img/mountains.png');
+  height: 150px;
   padding: 20px;
 }
 
@@ -33,11 +33,54 @@ li{
   margin-right: 20px;
 }
 
-.search-button{
+.button{
   margin-left: 20px;
   color: #e6e6e6;
   background: #0a0a0a;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 3px;
 }
+.park-list{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+  justify-content: center;
+}
+.park-name{
+  font-size: 24px;
+
+}
+.weather{
+  font-size: 14px;
+}
+.button{
+  margin-left: 10px;
+}
+.info-div{
+  border: solid black 1px;
+  width: 320px;
+  border-radius: 3px;
+  padding: 5px;
+  text-align: center;
+}
+
+a{
+  color: teal;
+  text-decoration: none; 
+ }
+
+ @media(max-width: 992px){
+  .info-div{
+    width: 450px;
+  }
+ }
+ 
+
+
+
+
+
+
+
+
