@@ -14,6 +14,11 @@ class ListItem extends Component {
 		}
 	}
 
+	hideHandler = () => {
+		this.setState( {
+			location: ''
+		})
+	}
 
 
 	infoHandler = () => {
@@ -22,7 +27,6 @@ class ListItem extends Component {
   		let gone = split.splice(1,1);
   		let locationData = split.join()
   		let weatherUrl = 'http://api.wunderground.com/api/' + weatherApi + '/forecast10day/q/' +  locationData + '.json';
-  		console.log(weatherUrl)
   		fetch(weatherUrl)
   			.then(response => {
   				return response.json()
@@ -52,12 +56,12 @@ class ListItem extends Component {
 				{location &&
 					<div className='info-div'>
 						<p className='park-name'>{this.state.name}</p>
-						<a href={this.state.url}>visit website</a>
+						<a href={this.state.url}>Visit Park Website</a>
 						<p>Weather forecast for {this.state.weather[0].title}</p>
+						<img className ='weather-icon' src={this.state.weather[0].icon_url} />
 						<p className='weather'>{this.state.weather[0].fcttext}</p>
-						<img src={this.state.weather[0].icon_url} />
-						
-						
+						<button className='button' onClick={this.hideHandler}>Hide Details</button>
+						<button className='button' onClick={this.forecastHandler}>5 Day Forecast</button>
 					</div>
 				}	
 			</div>
