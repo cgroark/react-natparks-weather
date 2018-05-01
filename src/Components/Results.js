@@ -10,13 +10,21 @@ class ListItem extends Component {
 			location: '',
 			url: '',
 			name: '',
-			weather:''
+			weather:'',
+			forecast: ''
 		}
+	}
+
+	forecastHandler = () => {
+		this.setState({
+			forecast: 'yes'
+		})
 	}
 
 	hideHandler = () => {
 		this.setState( {
-			location: ''
+			location: '',
+			forecast: '',
 		})
 	}
 
@@ -41,7 +49,8 @@ class ListItem extends Component {
   			})
 	}
 	render() {
-		let location = this.state.location
+		let location = this.state.location;
+		let forecast = this.state.forecast;
 		return(
 			<div className='park-list'>
 				{!location &&
@@ -53,15 +62,40 @@ class ListItem extends Component {
 					</div>
 				}
 
-				{location &&
+				{location && !forecast &&
 					<div className='info-div'>
 						<p className='park-name'>{this.state.name}</p>
 						<a href={this.state.url}>Visit Park Website</a>
-						<p>Weather forecast for {this.state.weather[0].title}</p>
-						<img className ='weather-icon' src={this.state.weather[0].icon_url} />
+						<p className='day'>Weather forecast for {this.state.weather[0].title}</p>
+						<img src={this.state.weather[0].icon_url} />
 						<p className='weather'>{this.state.weather[0].fcttext}</p>
 						<button className='button' onClick={this.hideHandler}>Hide Details</button>
-						<button className='button' onClick={this.forecastHandler}>5 Day Forecast</button>
+						<button className='button' onClick={this.forecastHandler}>3 Day Forecast</button>
+					</div>
+				}	
+
+				{forecast &&
+					<div className='forecast-div'>
+						<p className='park-name'>{this.state.name}</p>
+						<a href={this.state.url}>Visit Park Website</a>
+						<div className='forecast'>
+							<div className='weather-day'>
+								<p className='day'>Weather forecast for {this.state.weather[0].title}</p>
+								<img className ='weather-icon' src={this.state.weather[0].icon_url} />
+								<p className='weather'>{this.state.weather[0].fcttext}</p>
+							</div>
+							<div className='weather-day'>
+								<p className='day'>Weather forecast for {this.state.weather[2].title}</p>
+								<img src={this.state.weather[2].icon_url} />
+								<p className='weather'>{this.state.weather[2].fcttext}</p>
+							</div>
+							<div className='weather-day'>
+								<p className='day'>Weather forecast for {this.state.weather[4].title}</p>
+								<img src={this.state.weather[4].icon_url} />
+								<p className='weather'>{this.state.weather[4].fcttext}</p>
+							</div>
+						</div>
+						<button className='button' onClick={this.hideHandler}>Hide Details</button>
 					</div>
 				}	
 			</div>

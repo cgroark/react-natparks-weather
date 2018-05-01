@@ -54,6 +54,26 @@ li{
 .weather{
   font-size: 14px;
 }
+.forecast-div{
+  border: solid black 1px;
+  width: 850px;
+  border-radius: 3px;
+  padding: 5px;
+  text-align: center;
+}
+.day{
+  text-decoration: underline;
+}
+.forecast{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.weather-day{
+  display: inline-block;
+  width: 250px;
+}
+
 
 .button{
   margin-left: 10px;
