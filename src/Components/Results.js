@@ -11,7 +11,9 @@ class ListItem extends Component {
 			url: '',
 			name: '',
 			weather:'',
-			forecast: ''
+			forecast: '',
+			search: '',
+			description: ''
 		}
 	}
 
@@ -35,6 +37,9 @@ class ListItem extends Component {
   		let gone = split.splice(1,1);
   		let locationData = split.join()
   		let weatherUrl = 'http://api.wunderground.com/api/' + weatherApi + '/forecast10day/q/' +  locationData + '.json';
+  		this.setState({
+  			search: 'yes'
+  		})
   		fetch(weatherUrl)
   			.then(response => {
   				return response.json()
@@ -43,7 +48,9 @@ class ListItem extends Component {
   					name: this.props.name,
 					location: this.props.location,
 					url: this.props.url,
-  					weather: json.forecast.txt_forecast.forecastday
+					description: this.props.description,
+  					weather: json.forecast.txt_forecast.forecastday,
+  					search: ''
   				}) 
 
   			})
@@ -51,10 +58,12 @@ class ListItem extends Component {
 	render() {
 		let location = this.state.location;
 		let forecast = this.state.forecast;
+		let search = this.state.search;
+
 		return(
 			<div className='park-list'>
-				{!location &&
-					<div>
+				{!location && !search &&
+					<div className='park-each'>
 						<li key={this.props.name}>
 							{this.props.name}
 							<button className='button' onClick={this.infoHandler}>More Info</button>
@@ -62,10 +71,17 @@ class ListItem extends Component {
 					</div>
 				}
 
+				{search && !location &&
+					<div className='loading'>
+						<h2>Loading...</h2>
+					</div>
+				}
+
 				{location && !forecast &&
 					<div className='info-div'>
 						<p className='park-name'>{this.state.name}</p>
-						<a href={this.state.url}>Visit Park Website</a>
+						<p className='description'>{this.state.description}</p>
+						<a href={this.state.url} target='_blank'>Visit Park Website</a>
 						<p className='day'>Weather forecast for {this.state.weather[0].title}</p>
 						<img src={this.state.weather[0].icon_url} />
 						<p className='weather'>{this.state.weather[0].fcttext}</p>
@@ -77,7 +93,7 @@ class ListItem extends Component {
 				{forecast &&
 					<div className='forecast-div'>
 						<p className='park-name'>{this.state.name}</p>
-						<a href={this.state.url}>Visit Park Website</a>
+						<a href={this.state.url} target='_blank'>Visit Park Website</a>
 						<div className='forecast'>
 							<div className='weather-day'>
 								<p className='day'>Weather forecast for {this.state.weather[0].title}</p>
@@ -109,7 +125,7 @@ class Results extends Component {
 		let parkList;
 		if(this.props.results.length > 0){
 			parkList = this.props.results.map(park => {
-				return <ListItem name={park.fullName} location={park.latLong} url={park.url} />
+				return <ListItem name={park.fullName} location={park.latLong} url={park.url} description={park.description} />
 			})
 		}
 		return (

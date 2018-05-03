@@ -41,29 +41,69 @@ li{
   font-size: 14px;
   border-radius: 3px;
 }
+.button-state{
+  color: black;
+  background: #9CC2DB;
+  border: solid black;
+  font-size: 20px;
+  border-radius: 7px;
+}
+.button, .button-state:hover{
+  cursor: pointer;
+}
+.error{
+  text-align: center;
+  font-size: 22px;
+  color: #9CC2DB;
+}
 .park-list{
   display: flex;
   flex-wrap: wrap;
-  padding: 30px;
   justify-content: center;
+  padding: 0;
+}
+.park-each{
+  width: 225px;
+  padding: 30px;
+  border: #9CC2DB solid;
+  border-radius: 5px;
+  margin: 10px;
+  text-align: center;
+}
+.loading{
+  width: 225px;
+  padding: 30px;
+  margin: 10px;
+  text-align: center;
+  animation: blinker .8s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 .park-name{
   font-size: 24px;
+  margin: 10px;
+}
 
+.description{
+  font-size: 12px;
+  margin: 10px 40px;
 }
 .weather{
   font-size: 14px;
 }
 .forecast-div{
-  border: solid black 1px;
-  width: 850px;
-  border-radius: 3px;
+  border: #9CC2DB solid;
+  border-radius: 5px;
+  width: 950px;
   padding: 5px;
+  margin: 10px;
   text-align: center;
 }
-.day{
-  text-decoration: underline;
-}
+
 .forecast{
   display: flex;
   align-items: center;
@@ -74,26 +114,29 @@ li{
   width: 250px;
 }
 
-
 .button{
   margin-left: 10px;
+  margin-top: 10px;
 }
 .info-div{
-  border: solid black 1px;
-  width: 320px;
-  border-radius: 3px;
+  border: #9CC2DB solid;
+  border-radius: 5px;
+  width: 950px;
   padding: 5px;
+  margin: 10px;
   text-align: center;
 }
 
 a{
   color: teal;
-  text-decoration: none; 
  }
 
  @media(max-width: 992px){
   .info-div{
     width: 450px;
+  }
+  .description{
+    font-size: 18px;
   }
  }
  
