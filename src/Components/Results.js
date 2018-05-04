@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Weather from './Weather';
+import ParkList from './ParkList';
 let weatherApi = '4777b8d76e2b5feb';
-let weatherData
+let weatherData;
 
 class ListItem extends Component {
 	constructor(props){
@@ -16,6 +16,11 @@ class ListItem extends Component {
 			description: ''
 		}
 	}
+
+	listHandler = () => {
+		this.props.handleList()
+	}
+	
 
 	forecastHandler = () => {
 		this.setState({
@@ -60,13 +65,14 @@ class ListItem extends Component {
 		let forecast = this.state.forecast;
 		let search = this.state.search;
 
-		return(
+		return(	
 			<div className='park-list'>
 				{!location && !search &&
 					<div className='park-each'>
 						<li key={this.props.name}>
 							{this.props.name}
 							<button className='button' onClick={this.infoHandler}>More Info</button>
+							<button className='button' onClick={this.listHandler}>Add to Park List</button>
 						</li>
 					</div>
 				}
@@ -113,7 +119,7 @@ class ListItem extends Component {
 						</div>
 						<button className='button' onClick={this.hideHandler}>Hide Details</button>
 					</div>
-				}	
+				}
 			</div>
 			
 			)
@@ -121,11 +127,26 @@ class ListItem extends Component {
 }
 
 class Results extends Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			name: ''
+
+		}
+	}
+
+	handleList(){
+		this.setState({
+			name: this.park.fullName
+		})
+		console.log('handled')
+	}
+
 	render(){
 		let parkList;
 		if(this.props.results.length > 0){
 			parkList = this.props.results.map(park => {
-				return <ListItem name={park.fullName} location={park.latLong} url={park.url} description={park.description} />
+				return <ListItem name={park.fullName} location={park.latLong} url={park.url} description={park.description} handleList={this.handleList}/>
 			})
 		}
 		return (
@@ -133,6 +154,7 @@ class Results extends Component {
 				<ul className='park-list'>
 					{parkList}
 				</ul>
+				<ParkList name={this.state.name}/>
 			</div>
 	
 		)

@@ -19,6 +19,8 @@ class Parks extends Component {
 		})
 	}
 
+	
+
 	handleChange = (e) => {
 		this.setState({
 			park: e.target.value
@@ -33,7 +35,7 @@ class Parks extends Component {
 				return response.json()
 			})
 			.then((json) => {
-				let national = json.data.filter(park =>{
+				let national = json.data.filter(park => {
 					return park.designation === 'National Park'
 				})
 				this.setState({
@@ -64,6 +66,7 @@ class Parks extends Component {
 					<h2 className='error'>No Parks Found in This State</h2>
 				}
 				<Results results={this.state.parkData} />
+		
 			</div>
 		)
 	}
