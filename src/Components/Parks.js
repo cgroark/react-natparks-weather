@@ -49,7 +49,7 @@ class Parks extends Component {
 	render() {
 		let search = this.state.search
 		return (
-			<div>
+			<div className='main-form'>
 				{!search &&
 					<form className='search-bar' onSubmit={this.handleSubmit}>
 						<label className='search-label'>Search by State</label>

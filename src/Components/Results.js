@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ParkList from './ParkList';
+import FavParks from './FavParks';
 let weatherApi = '4777b8d76e2b5feb';
 let weatherData;
 
@@ -18,7 +18,7 @@ class ListItem extends Component {
 	}
 
 	listHandler = () => {
-		this.props.handleList()
+		this.props.handleList(this.props.url, this.props.name)
 	}
 	
 
@@ -93,6 +93,7 @@ class ListItem extends Component {
 						<p className='weather'>{this.state.weather[0].fcttext}</p>
 						<button className='button' onClick={this.hideHandler}>Hide Details</button>
 						<button className='button' onClick={this.forecastHandler}>3 Day Forecast</button>
+						<button className='button' onClick={this.listHandler}>Add to Park List</button>
 					</div>
 				}	
 
@@ -118,6 +119,7 @@ class ListItem extends Component {
 							</div>
 						</div>
 						<button className='button' onClick={this.hideHandler}>Hide Details</button>
+						<button className='button' onClick={this.listHandler}>Add to Park List</button>
 					</div>
 				}
 			</div>
@@ -130,18 +132,29 @@ class Results extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			name: ''
-
+			listData: []
 		}
 	}
 
-	handleList(){
+	handleList = (url, name) => {
+		let listArr = this.state.listData;
+		listArr.push({
+			name: name,
+			url: url
+		});
 		this.setState({
-			name: this.park.fullName
+			listData: listArr
 		})
-		console.log('handled')
 	}
 
+	deleteItem = (item) => {
+		let localList = this.state.listData;
+		let itemIdx = localList.indexOf(item);
+		localList.splice(itemIdx,1);
+		this.setState({
+			listData: localList
+		})
+	}
 	render(){
 		let parkList;
 		if(this.props.results.length > 0){
@@ -154,7 +167,7 @@ class Results extends Component {
 				<ul className='park-list'>
 					{parkList}
 				</ul>
-				<ParkList name={this.state.name}/>
+				<FavParks data={this.state.listData} delete={this.deleteItem}/>
 			</div>
 	
 		)
