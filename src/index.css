@@ -2,6 +2,10 @@
   
   --font-1:'Roboto', sans-serif;
   --font-2: 'Muli', sans-serif;
+  --color-grey: #e6e6e6;
+  --color-blue: #9CC2DB;
+  --color-black: #0a0a0a;
+  --color-red: #DDAA8C;
 }
 
 .container{
@@ -54,26 +58,26 @@ h1,h2,h3,h4{
 
 .button, .button-search{
   margin-left: 20px;
-  color: #e6e6e6;
-  background: #0a0a0a;
+  color: var(--color-grey);
+  background: var(--color-black);;
   border: none;
   font-size: 14px;
   border-radius: 3px;
 }
 .button-state{
   color: black;
-  background: #9CC2DB;
+  background: var(--color-blue);
   border: solid black;
   font-size: 20px;
   border-radius: 7px;
 }
 .del-button{
-  color: black;
+  color: var(--color-black);
   position: absolute;
   margin-top: -6px;
   margin-left: -4px;
   display: block;
-  background: #9CC2DB;
+  background: var(--color-blue);;
   border: solid black;
   font-size: 12px;
   border-radius: 7px;
@@ -94,7 +98,7 @@ h1,h2,h3,h4{
 .error{
   text-align: center;
   font-size: 22px;
-  color: #9CC2DB;
+  color: var(--color-blue);
 }
 .main-form{
   margin-right: 30%
@@ -109,7 +113,7 @@ h1,h2,h3,h4{
 .park-each{
   width: 225px;
   padding: 30px;
-  border: #9CC2DB solid;
+  border: var(--color-blue) solid;
   border-radius: 5px;
   margin: 10px;
   text-align: center;
@@ -117,7 +121,7 @@ h1,h2,h3,h4{
 .park-save{
   width: 85%;
   padding: 10px;
-  border: #DDAA8C solid;
+  border: var(--color-red) solid;
   border-radius: 5px;
   margin: 10px;
   text-align: center;
@@ -155,7 +159,7 @@ h1,h2,h3,h4{
   font-size: 14px;
 }
 .forecast-div, .info-div{
-  border: #9CC2DB solid;
+  border: var(--color-blue) solid;
   border-radius: 5px;
   width: 76%;
   padding: 5px;
@@ -178,8 +182,6 @@ h1,h2,h3,h4{
   margin-left: 10px;
   margin-top: 10px;
 }
-
-
 a{
   color: teal;
   font-family: var(--font-1);
