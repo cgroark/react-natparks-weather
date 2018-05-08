@@ -1,6 +1,8 @@
 import React,{ Component } from 'react';
 import Results from './Results';
+import list from '../utils/states';
 let api = 'TpUEGQRVegmV8RRSxrepQC1vjb9NjINuVHNsAvhq';
+
 
 class Parks extends Component {
 	constructor(props){
@@ -43,17 +45,24 @@ class Parks extends Component {
 					search: 'Yes'
 				})
 				console.log('stateeeeeee',this.state.parkData)
+				console.log(list)
 			})	
 	}
 
 	render() {
-		let search = this.state.search
+		const stateList = list.states.map(state => {
+			return <option value={state.abbreviation}>{state.name}</option>
+		})
+		let search = this.state.search;
 		return (
 			<div className='main-form'>
+			<h1>Search for National Parks by State</h1>
 				{!search &&
 					<form className='search-bar' onSubmit={this.handleSubmit}>
-						<label className='search-label'>Search by State</label>
-						<input placeholder='search here' type='text' value={this.state.park} onChange={this.handleChange} />
+						<select required onChange={this.handleChange}>
+                          <option value="" selected="selected">Select a State</option>
+                          {stateList}
+                    	</select>
 						<button className='button-search' type='submit'>Submit</button>
 					</form>
 				}

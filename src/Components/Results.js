@@ -84,7 +84,7 @@ class ListItem extends Component {
 				}
 
 				{location && !forecast &&
-					<div className='info-div'>
+					<div className='forecast-div'>
 						<h3 className='park-name'>{this.state.name}</h3>
 						<p className='description'>{this.state.description}</p>
 						<a href={this.state.url} target='_blank'>Visit Park Website</a>

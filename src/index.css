@@ -101,7 +101,9 @@ h1,h2,h3,h4{
   color: var(--color-blue);
 }
 .main-form{
-  margin-right: 30%
+  margin-top: 42px;
+  margin-right: 30%;
+  text-align: center;
 }
 .park-list{
   display: flex;
@@ -158,13 +160,14 @@ h1,h2,h3,h4{
 .weather{
   font-size: 14px;
 }
-.forecast-div, .info-div{
+.forecast-div{
   border: var(--color-blue) solid;
   border-radius: 5px;
-  width: 76%;
+  width: 77%;
   padding: 5px;
   margin-right: 10%;
   margin-left: 10%;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -188,8 +191,8 @@ a{
  }
 
  @media(max-width: 992px){
-  .info-div{
-    width: 450px;
+  .forecast-div{
+    width: 64%;
   }
   .description{
     font-size: 18px;
