@@ -10,11 +10,11 @@ class ListPark extends Component {
 	render(){
 		return(
 			<div className='park-save'>
-				<h4>
+				<button className='del-button' onClick={this.deleteHandler}>X</button>
+				<h4 className='fav-park'>
 					{this.props.name}
 				</h4>
-				<button className='del-button' onClick={this.deleteHandler}>X</button>
-				<a href={this.props.url}>Visit Park Website</a>
+				<a className='fav-link' href={this.props.url} target='_blank'>Visit Park Website</a>
 			</div>
 
 			)
@@ -31,7 +31,7 @@ class FavParks extends Component {
 		}
 		return(
 			<div className = 'fav-list'>
-			<h1>Park Comparison List</h1>
+			<h1>Park List</h1>
 			{listLength > 0 &&
 				<div className=''>
 						<div>
@@ -42,7 +42,7 @@ class FavParks extends Component {
 			}
 
 			{listLength === 0 &&
-				<h2>No parks added yet!</h2>
+				<p>Click 'Add to Park List' to add parks here</p>
 			}
 			</div>
 			

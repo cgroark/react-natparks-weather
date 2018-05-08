@@ -85,7 +85,7 @@ class ListItem extends Component {
 
 				{location && !forecast &&
 					<div className='info-div'>
-						<p className='park-name'>{this.state.name}</p>
+						<h3 className='park-name'>{this.state.name}</h3>
 						<p className='description'>{this.state.description}</p>
 						<a href={this.state.url} target='_blank'>Visit Park Website</a>
 						<p className='day'>Weather forecast for {this.state.weather[0].title}</p>
@@ -99,7 +99,7 @@ class ListItem extends Component {
 
 				{forecast &&
 					<div className='forecast-div'>
-						<p className='park-name'>{this.state.name}</p>
+						<h3 className='park-name'>{this.state.name}</h3>
 						<a href={this.state.url} target='_blank'>Visit Park Website</a>
 						<div className='forecast'>
 							<div className='weather-day'>
