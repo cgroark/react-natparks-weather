@@ -41,7 +41,7 @@ class ListItem extends Component {
 		let split = latlong.split(':').slice(1,3).join().split(',');
   		let gone = split.splice(1,1);
   		let locationData = split.join()
-  		let weatherUrl = 'http://api.wunderground.com/api/' + weatherApi + '/forecast10day/q/' +  locationData + '.json';
+  		let weatherUrl = 'https://api.wunderground.com/api/' + weatherApi + '/forecast10day/q/' +  locationData + '.json';
   		this.setState({
   			search: 'yes'
   		})
