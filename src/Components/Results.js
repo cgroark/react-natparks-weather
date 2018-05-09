@@ -159,7 +159,7 @@ class Results extends Component {
 		let parkList;
 		if(this.props.results.length > 0){
 			parkList = this.props.results.map(park => {
-				return <ListItem name={park.fullName} location={park.latLong} url={park.url} description={park.description} handleList={this.handleList}/>
+				return <ListItem name={park.fullName} location={park.latLong} url={park.url} description={park.description} handleList={this.handleList} handleFavInfo={this.handleFavInfo} />
 			})
 		}
 		return (
@@ -167,7 +167,7 @@ class Results extends Component {
 				<ul className='park-list'>
 					{parkList}
 				</ul>
-				<FavParks data={this.state.listData} delete={this.deleteItem}/>
+				<FavParks data={this.state.listData} delete={this.deleteItem} />
 			</div>
 	
 		)

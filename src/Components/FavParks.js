@@ -3,7 +3,6 @@ let parkDataList;
 
 class ListPark extends Component {
 	deleteHandler = () => {
-		console.log('clicked', this.props.item)
 		this.props.delete(this.props.item);
 	}
 
