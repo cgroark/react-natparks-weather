@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import Results from './Results';
 import list from '../utils/states';
-let api = 'TpUEGQRVegmV8RRSxrepQC1vjb9NjINuVHNsAvhq';
+let api = process.env.REACT_APP_PARKS_KEY
 
 
 class Parks extends Component {
@@ -29,6 +29,10 @@ class Parks extends Component {
 		})
 	}
 
+	handleFailure = () => {
+		console.log('error in ParksAPI call')
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault()
 		let parksApi = "https://developer.nps.gov/api/v1/parks?stateCode=" + this.state.park + "&api_key=" + api
@@ -46,7 +50,7 @@ class Parks extends Component {
 				})
 				console.log('stateeeeeee',this.state.parkData)
 				console.log(list)
-			})	
+			}).catch(this.handleFailure)	
 	}
 
 	render() {

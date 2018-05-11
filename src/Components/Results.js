@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FavParks from './FavParks';
-let weatherApi = '4777b8d76e2b5feb';
+let weatherApi = process.env.REACT_APP_WEATHER_KEY;
 let weatherData;
 
 class ListItem extends Component {
@@ -35,6 +35,9 @@ class ListItem extends Component {
 		})
 	}
 
+	handleFailure = () => {
+		console.log('error in weather call')
+	}
 
 	infoHandler = () => {
 		let latlong = this.props.location;
@@ -58,7 +61,7 @@ class ListItem extends Component {
   					search: ''
   				}) 
 
-  			})
+  			}).catch(this.handleFailure)
 	}
 	render() {
 		let location = this.state.location;
